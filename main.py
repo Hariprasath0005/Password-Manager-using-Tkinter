@@ -42,17 +42,17 @@ def save():
         messagebox.showinfo(title="Empty", message="Please make sure you haven't left any fields empty.")
     else:
         try:
-            with open("./Day19/password_manager/data.json","r") as datafile:
+            with open("./data.json","r") as datafile:
                 data = json.load(datafile)
                 
         except FileNotFoundError:
-            with open("./Day19/password_manager/data.json","w") as datafile:
+            with open("./data.json","w") as datafile:
                 json.dump(new_data,datafile,indent=4)
         else:
             is_ok = messagebox.askokcancel(title="Confirm", message=f"These are the details entered:\nWebsite:{a} \nEmail:{b}\nPassword:{c} \n Is it ok to save?")
             if is_ok:
                 data.update(new_data)
-                with open("./Day19/password_manager/data.json","w") as datafile:
+                with open("./data.json","w") as datafile:
                     json.dump(data,datafile,indent=4)
             
         finally:
@@ -63,7 +63,7 @@ def save():
 def find_password():
     website = website_entry.get()
     try:
-        with open("./Day19/password_manager/data.json","r") as datafile:
+        with open("./data.json","r") as datafile:
             data = json.load(datafile)      
     except FileNotFoundError:
         messagebox.showinfo(title="Error", message=f"No details exists")
@@ -89,7 +89,7 @@ window.config(padx=30,pady=30,bg="white")
 
 #Adding the logo
 canvas = Canvas(width=200,height=200,bg="white",highlightthickness=0)
-pd_image = PhotoImage(file="./Day19/password_manager/logo.png")
+pd_image = PhotoImage(file="./logo.png")
 canvas.create_image(130,100,image=pd_image)
 canvas.grid(row=0,column=1)
 
@@ -111,7 +111,7 @@ website_entry.focus()
 
 email_entry = Entry(width=52)
 email_entry.grid(row=2,column=1,columnspan=2)
-email_entry.insert(0,"Hariprasath@gmail.com")
+email_entry.insert(0,"Hari@gmail.com")
 
 pd_entry = Entry(width=32)
 pd_entry.grid(row=3,column=1)
